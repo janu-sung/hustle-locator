@@ -21,27 +21,27 @@ export default function Register() {
     try {
       // This is a placeholder for actual Supabase authentication
       // In a real implementation, we would use Supabase Auth
-      console.log("Registering with:", email, password, name);
+      // console.log("Registering with:", email, password, name);
       
-      // Simulate successful registration for now
-      setTimeout(() => {
-        setLoading(false);
-        router.push("/events");
-      }, 1000);
+      // // Simulate successful registration for now
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   router.push("/events");
+      // }, 1000);
       
       // Actual Supabase implementation would be:
-      // const { error } = await supabase.auth.signUp({
-      //   email,
-      //   password,
-      //   options: {
-      //     data: {
-      //       name,
-      //     },
-      //   },
-      // });
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            name,
+          },
+        },
+      });
       
-      // if (error) throw error;
-      // router.push("/events");
+      if (error) throw error;
+      router.push("/events");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during registration");
       setLoading(false);
